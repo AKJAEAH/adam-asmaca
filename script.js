@@ -1,4 +1,4 @@
-const words = ['kalem', 'masa', 'kapı', 'ayakkabı', 'elbise', 'gözlük', 'saat', 'telefon', 'bilgisayar', 'televizyon', 'radyo', 'çanta', 'anahtar', 'kilit', 'kalemlik', 'silgi', 'cetvel', 'makas', 'bıçak', 'tabak', 'bardak', 'fincan', 'tencere', 'tava', 'peçete', 'havlu', 'yatak', 'yorgan', 'yastık', 'koltuk', 'halı', 'perde', 'duvar', 'zemin', 'tavan', 'merdiven', 'duş', 'lavabo', 'tuvalet', 'balkon', 'bahçe', 'ağaç', 'kuş', 'köpek', 'kedi', 'balık', 'araba', 'bisiklet', 'tren', 'uçak', 'gemi', 'otobüs', 'otel', 'restoran', 'market', 'okul', 'hastane', 'park', 'müze', 'sinema', 'tiyatro', 'konser', 'spor', 'dans', 'müzik', 'resim', 'heykel', 'yazı', 'şiir', 'roman', 'hikaye', 'haber', 'makale', 'tez', 'rapor', 'sunum', 'not', 'ödev', 'sınav', 'diploma', 'başarı', 'mutluluk', 'aşk', 'dostluk', 'aile', 'evlilik', 'bebek', 'çocuk', 'gençlik', 'yaşlılık', 'kitap', 'defter', 'tren', 'dal', 'yaprak', 'orman', 'otobüs', 'gökyüzü', 'güneş', 'ay', 'yıldız', 'rüzgar', 'bulut', 'yağmur', 'kar', 'soğuk', 'sıcak', 'tatil', 'araştırma', 'çalışma', 'yemek', 'kahve', 'çikolata', 'internet', 'futbol', 'basketbol', 'voleybol', 'tenis', 'kayak', 'koşu', 'yüzme', 'gezi', 'seyahat', 'doğa', 'şehir', 'köy', 'meyve', 'sebze', 'eşya', 'mobilya', 'kemer', 'saç', 'diş', 'göz', 'kulak', 'burun', 'kol', 'bacak', 'dizi', 'film', 'roman', 'masa', 'sandalye', 'ev', 'bina', 'villa', 'çanta', 'su', 'deniz', 'yol', 'tatil', 'şehir', 'kıyafet', 'ayakkabı', 'gözlük', 'çanta', 'cep telefonu', 'saç', 'göz', 'kulak', 'kol', 'dizi', 'film', 'villa', 'su', 'deniz', 'yol', 'şehir', 'kıyafet']; // Kelimeler listesi
+const words = ['masa', 'saat', 'telefon', 'televizyon', 'radyo', 'silgi', 'tava', 'yorgan', 'perde', 'duvar', 'zemin', 'merdiven', 'balkon', 'araba', 'bisiklet', 'tren', 'gemi', 'otel', 'restoran', 'market', 'okul', 'hastane', 'park', 'sinema', 'tiyatro', 'konser', 'spor', 'resim', 'roman', 'hikaye', 'makale', 'tez', 'rapor', 'sunum', 'mutluluk', 'dostluk', 'aile', 'evlilik', 'bebek', 'kitap', 'tren', 'orman', 'bulut', 'kar', 'tatil', 'kahve', 'internet', 'futbol', 'basketbol', 'voleybol', 'tenis', 'kayak', 'gezi', 'seyahat', 'meyve', 'sebze', 'kemer', 'kulak', 'kol', 'bacak', 'dizi', 'film', 'sandalye', 'ev', 'bina', 'villa', 'su', 'deniz', 'yol', 'kulak', 'kol', 'dizi', 'film', 'villa', 'su', 'deniz', 'yol'];
 let targetWord = words[Math.floor(Math.random() * words.length)];
 let guessedLetters = [];
 let remainingGuesses = 6;
@@ -32,18 +32,28 @@ function checkLetter() {
 
     if (!targetWord.includes(letter)) {
         remainingGuesses--;
+        if (remainingGuesses < 0) {
+            remainingGuesses = 0;
+            document.getElementById('message').textContent = 'Oyunu kaybettiniz. Doğru kelime: ' + targetWord;
+            document.getElementById('letterInput').disabled = true;
+            document.querySelector('button').disabled = true;
+            return;
+        }
         document.getElementById('remainingGuesses').textContent = 'Kalan Tahmin Hakkı: ' + remainingGuesses;
         updateHangmanImage();
     }
 
-    if (remainingGuesses <== 0) {
+    if (remainingGuesses === 0) {
         document.getElementById('message').textContent = 'Oyunu kaybettiniz. Doğru kelime: ' + targetWord;
         document.getElementById('letterInput').disabled = true;
+        document.querySelector('button').disabled = true;
+        return;
     }
 
     if (!document.getElementById('wordToGuess').textContent.includes('_')) {
         document.getElementById('message').textContent = 'Tebrikler! Kazandınız!';
         document.getElementById('letterInput').disabled = true;
+        document.querySelector('button').disabled = true;
     }
 }
 
