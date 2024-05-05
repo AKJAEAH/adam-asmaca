@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Güncel Haberler</title>
-<link rel="stylesheet" href="styles.css"> <!-- CSS dosyasını ekleyin -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adam Asmaca Oyunu</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Güncel Haberler</h1>
-    <div id="haberler"></div>
-
-    <script src="script.js"></script> <!-- JavaScript dosyasını ekleyin -->
+    <h1>Adam Asmaca Oyunu</h1>
+    <p id="wordToGuess"></p>
+    <p>Harf gir:</p>
+    <input type="text" id="letterInput">
+    <button onclick="checkLetter()">Harf Kontrol</button>
+    <p id="guessedLetters"></p>
+    <p id="remainingGuesses"></p>
+    <p id="message"></p>
+    <script src="script.js"></script>
 </body>
 </html>
