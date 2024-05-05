@@ -36,7 +36,7 @@ function checkLetter() {
         updateHangmanImage();
     }
 
-    if (remainingGuesses === 0) {
+    if (remainingGuesses <== 0) {
         document.getElementById('message').textContent = 'Oyunu kaybettiniz. Doğru kelime: ' + targetWord;
         document.getElementById('letterInput').disabled = true;
     }
